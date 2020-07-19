@@ -1,0 +1,38 @@
+server:
+  port: 9090
+  servlet:
+    context-path:
+
+spring:
+  h2:
+    console:
+      enabled: true
+
+  datasource:
+    platform: h2
+    url: jdbc:h2:mem:primstrapdb
+    #url: jdbc:mysql://localhost:3306/test2?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDateTimeCode=false&serverTimezone=UTC
+    username: root
+    password:
+    mail:
+      host: smtp.gmail.com
+      port: 587
+      username: <MAIL_ADDRESS>
+      password: <PASSWORD>
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
+            connectiontimeout: 5000
+            timeout: 3000
+            writetimeout: 5000
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+jsf:
+  primefaces:
+    theme: admin
