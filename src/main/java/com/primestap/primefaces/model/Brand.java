@@ -1,5 +1,8 @@
 package com.primestap.primefaces.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,9 +24,15 @@ public class Brand implements Serializable {
         @Column(length = 100,unique = true)
         private String displayName;
 
-        @OneToMany(targetEntity=Car.class, mappedBy="brand",cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-        private List<Car> car = new ArrayList<>();
 
+        @OneToMany(
+                mappedBy = "brand",
+                cascade = CascadeType.ALL,
+                fetch = FetchType.EAGER,
+                orphanRemoval = true
+        )
+        @Fetch(FetchMode.SELECT)
+        private List<Car> cars = new ArrayList<>();
 
         public Brand() {
         }
@@ -48,6 +57,22 @@ public class Brand implements Serializable {
         }
 
         public Brand(String brand, String s) {
+        }
+
+        public Brand(long id, String name, String model, String displayName, List<Car> cars) {
+                this.id = id;
+                this.name = name;
+                this.model = model;
+                this.displayName = displayName;
+                this.cars = cars;
+        }
+
+        public List<Car> getCars() {
+                return cars;
+        }
+
+        public void setCars(List<Car> cars) {
+                this.cars = cars;
         }
 
         public long getId() {

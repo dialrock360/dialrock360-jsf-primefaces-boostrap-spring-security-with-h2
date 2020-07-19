@@ -31,7 +31,7 @@ public class Car  implements Serializable {
     private String color;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "brand_id", nullable = false,updatable=false)
+    @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;
 
     public Car() {

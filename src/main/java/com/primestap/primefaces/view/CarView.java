@@ -68,12 +68,15 @@ public class CarView  {
 
 
         try{
-            car= (Car) event.getObject();
-            long id=(long)car.getId();
-            long brand_id=(long)car.getBrand().getId();
+            Car c= (Car) event.getObject();
+            long id=(long)c.getId();
+            long brand_id=(long)c.getBrand().getId();
 
             if ((id!=0) && (brand_id!=0)) {
                 System.out.println("//-----------------------  SAVE VIEW  ------------------------------------------------//");
+                car=carRepository.getOne(id) ;
+                brand=brandRepository.getOne(brand_id) ;
+                car.setBrand(brand);
 
                 carservice.saveCar(car);
 
@@ -139,6 +142,8 @@ public class CarView  {
                 System.out.println("//-----------------------  SAVE VIEW  ------------------------------------------------//");
 
                 car=carRepository.getOne(id) ;
+                brand=brandRepository.getOne(car.getBrand().getId()) ;
+                car.setBrand(brand);
 
                 switch(column_name) {
                     case "brand":

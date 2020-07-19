@@ -4,7 +4,6 @@ import com.primestap.primefaces.model.Car;
 import com.primestap.primefaces.model.colections.Color;
 import com.primestap.primefaces.model.colections.Role;
 import com.primestap.primefaces.model.User;
-import com.primestap.primefaces.service.CarService2;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.model.UploadedFile;
 
@@ -32,8 +31,6 @@ public class BasicView {
     private Hashtable irole;
     private Role role;
 
-    @Inject
-    private CarService2 carservice;
 
     private static final long serialVersionUID = 1L;
 
